@@ -1,0 +1,1 @@
+"""Medium tier nodes."""

@@ -1,0 +1,43 @@
+You are a quality validator for an enterprise tool retrieval evaluation benchmark. Given a batch of generated (query, answer) samples, assess whether each sample is suitable as an evaluation example.
+
+[START OF TASK DESCRIPTION]
+Validate each sample and return one verdict per sample (in the same order).
+For each sample, determine:
+1. Is the query CONCISE and written in BUSINESS LANGUAGE (not technical API language)?
+2. Does the query sound like something a real enterprise user would actually ask?
+3. For {{ complexity }} tier: is the number of answer tools and the ambiguity level appropriate?
+   - easy: query should be specific enough that one tool is the clear answer; the phrasing should not be technical
+   - medium: query should be genuinely ambiguous between 2-3 tools; ambiguity must arise from overlapping domains, not vague phrasing
+   - hard: query should describe a high-level business goal that legitimately spans 4+ tools
+4. Are all answer tools plausibly relevant to the query?
+[END OF TASK DESCRIPTION]
+
+[START OF VALIDATION RULES]
+A sample PASSES (validation_result: true) if ALL of the following hold:
+- The query is CONCISE (1-3 sentences, not verbose or over-specified)
+- The query uses BUSINESS LANGUAGE — no API method names, technical identifiers, OData operators ($filter, $select, $expand, $orderby, etc.)
+- The query reads naturally — it sounds like a real enterprise user asking a question, not a developer writing a specification
+- All answer tools are plausibly relevant to the stated query
+- The ambiguity level matches the complexity tier:
+  - easy: one tool is a clear answer; query is specific enough to distinguish it
+  - medium: 2-3 tools all plausibly match; ambiguity stems from overlapping functional domains
+  - hard: 4+ tools are all genuinely needed for the stated business goal
+
+A sample FAILS (validation_result: false) if ANY of the following hold:
+- The query is verbose or reads like a technical specification
+- The query contains API names, OData syntax, or schema property names
+- The query is too generic to be meaningful (e.g. "get data", "manage system entities")
+- The query sounds artificial or forced
+- Answer tools are not justified by the query content
+- Wrong complexity: e.g. an easy query matching 3+ tools equally, or a hard query where only 1-2 tools fit
+[END OF VALIDATION RULES]
+
+[START OF SAMPLES TO VALIDATE]
+{{ samples_str }}
+[END OF SAMPLES TO VALIDATE]
+
+[START OF OUTPUT FORMAT]
+{{ format_instructions }}
+[END OF OUTPUT FORMAT]
+
+Validate each sample in order and return one verdict per sample.

@@ -1,0 +1,56 @@
+You are a data generation expert creating an evaluation benchmark for a tool retrieval model.
+Your task is to generate {{ n_samples }} evaluation samples, each consisting of a concise enterprise user query that represents a high-level business goal spanning 4 or more tools.
+
+[START OF TASK DESCRIPTION]
+The goal is to simulate how enterprise users ask about broad cross-functional needs that span multiple systems or domains.
+Unlike typical benchmark queries (which are narrowly scoped to one API), your queries should be:
+- Concise: 1-3 sentences describing a high-level business objective
+- Written in natural business language (NOT using API names, technical identifiers, or schema terms)
+- Broad enough that 4+ tools are all legitimately relevant to addressing the user's goal
+
+Each sample must contain:
+1. A query — a concise business goal or scenario that spans 4+ tools
+2. An answer — a list of 4 or more tool names that are all genuinely relevant
+[END OF TASK DESCRIPTION]
+
+[START OF GENERATION RULES]
+1. Queries must describe a HIGH-LEVEL BUSINESS GOAL, not a specific operation on one tool
+2. Use BUSINESS LANGUAGE — no API method names, OData syntax, or technical identifiers
+3. The query must be GENUINELY BROAD: all answer tools should be necessary or highly relevant for the stated goal
+4. Do NOT force breadth by making the query vague or meaningless
+5. The anchor tool must be among the answer tools
+6. All answer tools must come from the tool list below — no hallucinations
+7. Every query must be distinct across samples
+
+GOOD broad query examples:
+- "I need to close out this quarter's financials" (spans GL, AR, AP, cost center, and reporting tools)
+- "Onboard a new supplier and set up their payment terms" (spans vendor master, procurement, banking, and contract tools)
+- "Prepare for our annual inventory audit" (spans warehouse, procurement, asset, and reporting tools)
+
+BAD query examples (too narrow or too vague):
+- "Get me some data" (meaningless)
+- "Update the purchase order status" (too narrow, matches 1-2 tools)
+[END OF GENERATION RULES]
+
+[START OF TARGET TOOL]
+Tool Name: {{ anchor_tool_name }}
+Description: {{ anchor_tool_description }}
+[END OF TARGET TOOL]
+
+[START OF TOOL LIST]
+These are all available tools. Your answer must only contain tool names from this list:
+{{ candidate_pool_str }}
+[END OF TOOL LIST]
+
+{% if previous_feedback and previous_feedback != "None" %}
+[START OF FEEDBACK FROM PREVIOUS ATTEMPT]
+{{ previous_feedback }}
+Address these issues in your new generation.
+[END OF FEEDBACK FROM PREVIOUS ATTEMPT]
+{% endif %}
+
+[START OF OUTPUT FORMAT]
+{{ format_instructions }}
+[END OF OUTPUT FORMAT]
+
+Generate {{ n_samples }} hard-tier eval samples. Each query must describe a broad enterprise goal, in business language, with at least 4 tools as genuine answers.

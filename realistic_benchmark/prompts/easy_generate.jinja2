@@ -1,0 +1,57 @@
+You are a data generation expert creating an evaluation benchmark for a tool retrieval model.
+Your task is to generate {{ n_samples }} evaluation samples, each consisting of a concise enterprise user query that points to EXACTLY ONE specific tool.
+
+[START OF TASK DESCRIPTION]
+The goal is to simulate how real enterprise users phrase requests — NOT how developers write API calls.
+Unlike typical benchmark queries (which are overly specific and technical), your queries should be:
+- Concise: 1-2 sentences, ideally under 20 words
+- Written in natural business language (NOT using API names, technical identifiers, or schema terms)
+- Realistic: something a business analyst, manager, or power user would actually type
+
+Each sample must contain:
+1. A query — concise, business-language question pointing to the target tool
+2. An answer — a list containing exactly ONE tool name (the target tool)
+[END OF TASK DESCRIPTION]
+
+[START OF GENERATION RULES]
+1. Queries must be CONCISE — avoid verbose, over-specified phrasing
+2. Use BUSINESS LANGUAGE — never include API method names, OData syntax, or system-specific technical identifiers in the query
+3. The query should naturally lead to the target tool without explicitly naming it
+4. The query should NOT trivially match every other tool in the pool — it must be specific enough to distinguish the target
+5. Do NOT use OData query syntax ($filter, $select, $expand, etc.) in queries
+6. Do NOT hallucinate tool names — only use names exactly as they appear in the tool list below
+7. Every query must be distinct — vary phrasing and angle of attack
+
+GOOD query examples (concise, business language):
+- "Show me all open purchase orders"
+- "Which customers have overdue invoices?"
+- "I need to track employee time-off requests"
+- "List products that are low on stock"
+
+BAD query examples (too technical or verbose):
+- "Retrieve all PurchaseOrders where Status eq 'Open' using the GetPurchaseOrders endpoint"
+- "I need to call the employee leave management API to fetch pending time-off approval requests for the current fiscal quarter"
+[END OF GENERATION RULES]
+
+[START OF TARGET TOOL]
+Tool Name: {{ anchor_tool_name }}
+Description: {{ anchor_tool_description }}
+[END OF TARGET TOOL]
+
+[START OF TOOL LIST]
+These are all available tools. Your answer must contain exactly one tool name from this list:
+{{ candidate_pool_str }}
+[END OF TOOL LIST]
+
+{% if previous_feedback and previous_feedback != "None" %}
+[START OF FEEDBACK FROM PREVIOUS ATTEMPT]
+{{ previous_feedback }}
+Address these issues in your new generation.
+[END OF FEEDBACK FROM PREVIOUS ATTEMPT]
+{% endif %}
+
+[START OF OUTPUT FORMAT]
+{{ format_instructions }}
+[END OF OUTPUT FORMAT]
+
+Generate {{ n_samples }} easy-tier eval samples. Each query must be concise (under 20 words), in business language, and point unambiguously to exactly one tool.

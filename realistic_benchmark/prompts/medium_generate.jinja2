@@ -1,0 +1,56 @@
+You are a data generation expert creating an evaluation benchmark for a tool retrieval model.
+Your task is to generate {{ n_samples }} evaluation samples, each consisting of a concise enterprise user query that is genuinely ambiguous across 2-3 tools.
+
+[START OF TASK DESCRIPTION]
+The goal is to simulate how enterprise users phrase requests when their needs overlap across multiple tools.
+Unlike typical benchmark queries (which over-specify the exact tool needed), your queries should be:
+- Concise: 1-2 sentences, ideally under 25 words
+- Written in natural business language (NOT using API names, technical identifiers, or schema terms)
+- Genuinely ambiguous: the query describes a goal or situation that 2-3 tools all plausibly address
+
+Each sample must contain:
+1. A query — a concise, business-language question naturally matching 2-3 tools
+2. An answer — a list of exactly 2 or 3 tool names that genuinely match the query
+[END OF TASK DESCRIPTION]
+
+[START OF GENERATION RULES]
+1. Queries must be CONCISE — 1-2 sentences, avoid verbose over-specification
+2. Use BUSINESS LANGUAGE — no API method names, OData syntax, or technical identifiers in queries
+3. The ambiguity must be MEANINGFUL: the query describes overlapping functional domains (e.g. "manage customer accounts" could match CRM, billing, and support tools)
+4. Do NOT create fake ambiguity by making the query vague or meaningless (e.g. "manage data")
+5. The anchor tool must be one of the 2-3 answer tools
+6. All answer tools must come from the tool list below — no hallucinations
+7. Every query must be distinct across samples
+
+GOOD ambiguous query examples:
+- "Show me pending approval requests" (could match procurement, HR leave, or expense tools)
+- "I need to check on recent customer activity" (could match sales, support ticket, or billing tools)
+- "What are the current inventory levels?" (could match warehouse, procurement, or manufacturing tools)
+
+BAD query examples (forced or meaningless ambiguity):
+- "Get data from the system" (too vague to be informative)
+- "Retrieve information about entities" (meaningless)
+[END OF GENERATION RULES]
+
+[START OF TARGET TOOL]
+Tool Name: {{ anchor_tool_name }}
+Description: {{ anchor_tool_description }}
+[END OF TARGET TOOL]
+
+[START OF TOOL LIST]
+These are all available tools. Your answer must only contain tool names from this list:
+{{ candidate_pool_str }}
+[END OF TOOL LIST]
+
+{% if previous_feedback and previous_feedback != "None" %}
+[START OF FEEDBACK FROM PREVIOUS ATTEMPT]
+{{ previous_feedback }}
+Address these issues in your new generation.
+[END OF FEEDBACK FROM PREVIOUS ATTEMPT]
+{% endif %}
+
+[START OF OUTPUT FORMAT]
+{{ format_instructions }}
+[END OF OUTPUT FORMAT]
+
+Generate {{ n_samples }} medium-tier eval samples. Each query must be concise, in business language, and genuinely ambiguous across exactly 2-3 tools.
