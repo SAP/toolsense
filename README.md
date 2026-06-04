@@ -1,4 +1,4 @@
-<h1 align="center">ToolSense</h1>
+<h1 align="center">Project ToolSense</h1>
 
 <p align="center">
   <strong>Opensource Diagnostic Framework for Auditing Parametric Tool Knowledge in LLMs</strong>
@@ -25,7 +25,7 @@
 
 ## About this project
 
-**ToolSense** is a diagnostic benchmark framework for auditing how well large language models encode parametric tool knowledge — the factual, semantic understanding of API tools stored directly in model weights rather than retrieved at runtime.
+**Project ToolSense** is a diagnostic benchmark framework for auditing how well large language models encode parametric tool knowledge — the factual, semantic understanding of API tools stored directly in model weights rather than retrieved at runtime.
 
 Given a catalog of tools (e.g., enterprise APIs described by name + description), ToolSense automatically generates three complementary benchmarks that probe different facets of tool comprehension:
 
