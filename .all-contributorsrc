@@ -1,0 +1,10 @@
+{
+    "projectName": "toolsense",
+    "projectOwner": "SAP",
+    "files": [
+        "README.md"
+    ],
+    "commitType": "docs",
+    "commitConvention": "angular",
+    "contributorsPerLine": 7
+}
