@@ -33,6 +33,15 @@
         "ideas",
         "maintenance"
       ]
+    },
+    {
+      "login": "sebastian-schreiber-sap",
+      "name": "Sebastian Schreiber",
+      "avatar_url": "https://avatars.githubusercontent.com/u/153761180?v=4",
+      "profile": "https://github.com/sebastian-schreiber-sap",
+      "contributions": [
+        "ideas"
+      ]
     }
   ]
 }
