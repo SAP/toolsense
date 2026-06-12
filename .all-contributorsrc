@@ -1,10 +1,56 @@
 {
-    "projectName": "toolsense",
-    "projectOwner": "SAP",
-    "files": [
-        "README.md"
-    ],
-    "commitType": "docs",
-    "commitConvention": "angular",
-    "contributorsPerLine": 7
+  "projectName": "toolsense",
+  "projectOwner": "SAP",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "ashutosh1919",
+      "name": "Ashutosh Hathidara",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20843596?v=4",
+      "profile": "http://ashutoshhathidara.com",
+      "contributions": [
+        "research",
+        "code",
+        "design",
+        "ideas",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "sai-shruthi-s",
+      "name": "Sai Shruthi Sistla",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46522196?v=4",
+      "profile": "https://github.com/sai-shruthi-s",
+      "contributions": [
+        "research",
+        "code",
+        "design",
+        "ideas",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "sebastian-schreiber-sap",
+      "name": "Sebastian Schreiber",
+      "avatar_url": "https://avatars.githubusercontent.com/u/153761180?v=4",
+      "profile": "https://github.com/sebastian-schreiber-sap",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "bsahil29",
+      "name": "Sahil Bansal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36884804?v=4",
+      "profile": "https://github.com/bsahil29",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ]
 }
