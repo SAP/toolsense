@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+  <a href="https://arxiv.org/abs/2606.12451"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2606.12451-b31b1b.svg"></a>
   <a href="https://github.com/SAP/toolsense/blob/main/LICENSE"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
   <a href="https://www.python.org/downloads/"><img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-blue.svg"></a>
   <a href="https://github.com/SAP/toolsense/issues"><img alt="GitHub Issues" src="https://img.shields.io/github/issues/SAP/toolsense"></a>
@@ -300,10 +301,14 @@ Pre-generated benchmark datasets are included in `data/` and can be used directl
 If you use ToolSense in your research, please cite:
 
 ```bibtex
-@misc{toolsense2026,
-  title   = {ToolSense: A Diagnostic Framework for Auditing Parametric Tool Knowledge in LLMs},
-  year    = {2026},
-  url     = {https://github.com/SAP/toolsense}
+@misc{hathidara2026toolsense,
+    title={ToolSense: A Diagnostic Framework for Auditing Parametric Tool Knowledge in LLMs}, 
+    author={Ashutosh Hathidara and Sai Shruthi Sistla and Sebastian Schreiber and Sahil Bansal},
+    year={2026},
+    eprint={2606.12451},
+    archivePrefix={arXiv},
+    primaryClass={cs.AI},
+    url={https://arxiv.org/abs/2606.12451},
 }
 ```
 
